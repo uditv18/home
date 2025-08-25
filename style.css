@@ -1,0 +1,29 @@
+body {
+  font-family: 'Latin Modern Roman', Times, serif;
+  margin: 1in;
+  background: #fff;
+  color: #222;
+}
+h2 {
+  font-variant: small-caps;
+  border-bottom: 2px solid #000;
+  font-size: 1.4em;
+  margin-top: 1.2em;
+}
+ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+li {
+  margin-bottom: 0.35em;
+}
+.section {
+  margin-bottom: 1.5em;
+}
+@media print {
+  body {
+    margin: 0.5in;
+    font-size: 11pt;
+  }
+}
+
