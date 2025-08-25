@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Home - Udit Kumar</title>
-  <style>
-    html, body { height: 100%; margin: 0; }
-    body { min-height: 100vh; }
-    iframe { 
-      width: 100vw; 
-      height: 99vh; 
-      border: none; 
-      display: block;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Udit Kumar Resume</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <iframe src="resume/cv.html"></iframe>
+  <header>
+    <h1>Udit Kumar</h1>
+  </header>
+  
+  <div class="container">
+    <aside class="sidebar">
+      <img src="your-photo.jpg" alt="Udit Kumar" class="profile-pic" />
+      <h2>Udit Kumar</h2>
+      <p><a href="mailto:18udit.v@gmail.com">18udit.v@gmail.com</a></p>
+      <div class="social-links">
+        <!-- Add your social links here -->
+        <a href="#" target="_blank">LinkedIn</a><br />
+        <a href="#" target="_blank">GitHub</a><br />
+      </div>
+    </aside>
+    
+    <main class="cv-window">
+      <iframe src="resume/cv.html" frameborder="0" scrolling="yes"></iframe>
+    </main>
+  </div>
+  
 </body>
 </html>
