@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fefefe;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #004080;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 72px); /* header approx height */
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 280px;
+  background-color: #e0e7ff;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-right: 2px solid #ccc;
+  overflow-y: auto;
+}
+
+.profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #004080;
+}
+
+.sidebar h2 {
+  margin: 0.3rem 0 1rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #002959;
+}
+
+.sidebar p a {
+  color: #004080;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sidebar .social-links a {
+  display: block;
+  color: #004080;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.sidebar .social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Main CV window */
+.cv-window {
+  flex: 1;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.cv-window iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
