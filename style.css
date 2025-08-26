@@ -1,87 +1,138 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fefefe;
-  color: #333;
-  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: rgb(253, 130, 48);
+}
+
+/* Header */
+header {
+  background: rgb(253, 130, 48);
+/*  border-radius: 0 0 0 0;*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px 150px 20px;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 -120px 0;
+/*  box-shadow: 0 4px 8px rgba(0,0,0,0.2); */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+header h2 {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.branding {
   display: flex;
   flex-direction: column;
 }
 
-header {
-  background-color: #004080;
-  color: white;
-  padding: 1rem 2rem;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.8rem;
-  letter-spacing: 0.1rem;
-}
 
-.container {
-  flex: 1;
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
   display: flex;
-  height: calc(100vh - 72px); /* header approx height */
+  gap: 20px;
 }
 
-/* Sidebar styles */
-.sidebar {
-  width: 280px;
-  background-color: #e0e7ff;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  border-right: 2px solid #ccc;
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.1s;
+}
+
+nav ul li a:hover {
+  color: #ff6600;
+}
+
+/* Content Window */
+.content-window {
+  width: 100%;
+  height: 15cm;
+
+  background: orange; /*#fff8e7;*/
+  border-radius: 120px 0 0 0;
+  box-shadow: 4px 0 0 4px rgba(0,0,0,0.1);
+  margin: 0 20px 0 0;
+  padding: 0 0 0 0;
+  position: relative;
+  z-index: 2;
   overflow-y: auto;
+  scrollbar-width: none; /* hides scrollbar in Firefox */
+  .my-element::-webkit-scrolbar {
+    display: none;
+  }
+
 }
 
-.profile-pic {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  border: 3px solid #004080;
+/*.content-window h3 {margin-top: 0;} */
+
+.cv-frame {
+  border: none;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* extra safety */
+  scrollbar-width: none; /* hides scrollbar in Firefox */
 }
 
-.sidebar h2 {
-  margin: 0.3rem 0 1rem;
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: #002959;
+.repo1 {
+  width: 100%;
+  height: 12cm;
+  background: blue;
+  border-radius: 0 0 0 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  overflow-y: auto;
+  scrollbar-width: none; /* hides scrollbar in Firefox */
+  padding: 0;
 }
 
-.sidebar p a {
-  color: #004080;
+
+
+
+.site-footer {
+  background: white;
+  border-radius: 0 0 0 0;  /* curved top corners */
+  padding: 100px 20px 50px 20px;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.1); /* subtle shadow */
+  margin-top: 0;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 100px;
+  margin: 0 0 20px 0;
+}
+
+.footer-list li {
+  margin: 8px 0;
+}
+
+.footer-list a {
   text-decoration: none;
-  font-weight: 600;
+  color: #333;
+  font-size: 14px;
 }
 
-.sidebar .social-links a {
-  display: block;
-  color: #004080;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  font-size: 1.1rem;
-}
-
-.sidebar .social-links a:hover {
+.footer-list a:hover {
+  color: #007bff;
   text-decoration: underline;
 }
 
-/* Main CV window */
-.cv-window {
-  flex: 1;
-  padding: 1rem;
-  overflow: hidden;
-}
 
-.cv-window iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
