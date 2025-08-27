@@ -1,0 +1,51 @@
+.content-window {
+  display: flex;
+  justify-content: center;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #161520;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 700px;
+  box-shadow: 0 4px 12px #161520(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.info {
+  flex: 2;
+  padding-right: 20px;
+}
+
+.info h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.info p {
+  font-size: 15px;
+  margin: 6px 0;
+  color: #555;
+}
+
+.info strong {
+  color: #000;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
