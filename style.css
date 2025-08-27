@@ -15,7 +15,7 @@ body {
 
 /* Header */
 header {
-  background: linear-gradient(270deg, #424242 0%, #161520 100%);
+  background: linear-gradient(270deg, #585858 0%, #161520 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;

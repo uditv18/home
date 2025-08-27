@@ -3,7 +3,7 @@ html,body{height:100%}
 body {
   margin: 0;
   font-family: Inter,system-ui,-apple-system,"Helvetica Neue",Arial;
-  background: linear-gradient(225deg, #424242 0%, #161520 100%);
+  background: linear-gradient(225deg, #585858 0%, #161520 100%);
   overflow-x: hidden;
   overflow-y: auto; /* Prevent body-level scrolling */
   scrollbar-width: none; /* hides scrollbar in Firefox */
@@ -26,7 +26,7 @@ body {
   border-radius: 20px 0;
   padding: 8% 5%;
   width: 60%;
-  box-shadow: 0 6px 18px rgba(53, 53, 53, 0.959);
+  box-shadow: -0 11px 24px rgba(129, 129, 129, 0.836);
   font-family: Arial, sans-serif;
   gap: 20px; /* space between text and image */
 }
