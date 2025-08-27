@@ -5,15 +5,19 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #ff5400;
+  background-color: #161520;
   overflow-x: hidden;
   overflow-y: auto; /* Prevent body-level scrolling */
   scrollbar-width: none; /* hides scrollbar in Firefox */
+  ::-webkit-scrollbar{
+    display: none;
+  }
 }
+
 
 /* Header */
 header {
-  background: #ff5400;
+  background: #161520;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,19 +25,25 @@ header {
   position: relative;
   z-index: 1;
   margin: 0 0 -10% auto;
-/*  box-shadow: 0 4px 8px rgba(0,0,0,0.2); */
 }
 
 header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  font-family: 'Great Vibes'; /* Stylish cursive font */
   font-weight: bold;
+  transform: skewX(-35deg);
+  color: #ffffff;
+  text-shadow: #555;
+  display: inline-block;
 }
 
 header h2 {
   margin: 0;
   font-size: 0.9rem;
-  color: #555;
+  color: #b8b8b8;
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
 }
 
 .branding {
@@ -52,14 +62,15 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #424242;
+  text-shadow: #555;
   font-weight: 500;
   font-size: 1rem;
   transition: color 0.1s;
 }
 
 nav ul li a:hover {
-  color: #24f0ff;
+  color: #8f8f8f;
 }
 
 /* Content Window */
@@ -67,7 +78,7 @@ nav ul li a:hover {
   width: 100%;
   height: 70vh;
 
-  background: orange; /*#fff8e7;*/
+  background: #161520; /*#fff8e7;*/
   border-radius: 120px 0 0 0;
 /*  box-shadow: 4px 0 0 4px rgba(0, 0, 0, 0.2); */
   margin: 0 0 0 1%;
@@ -76,10 +87,10 @@ nav ul li a:hover {
   z-index: 2;
   overflow-y: auto;
   scrollbar-width: none; /* hides scrollbar in Firefox */
-  .my-element::-webkit-scrolbar {
-    display: none;
-  }
+}
 
+.content-window::-webkit-scrollbar {
+  display: none;
 }
 
 /*.content-window h3 {margin-top: 0;} */
@@ -88,10 +99,14 @@ nav ul li a:hover {
   border: none;
   width: 100%;
   height: 100%;
+  min-height: 500px; /* fallback */
   overflow: auto; /* extra safety */
   scrollbar-width: none; /* hides scrollbar in Firefox */
 }
 
+.cv-frame::-webkit-scrollbar {
+  display: none;
+}
 
 /* Repos window: horizontal scroll, scrollbar hidden */
 .repos-window {
@@ -102,11 +117,10 @@ nav ul li a:hover {
   scroll-snap-type: x mandatory;          /* nice snap while scrolling */
   -ms-overflow-style: none;               /* IE/Edge: hide scrollbar */
   scrollbar-width: none;                  /* Firefox: hide scrollbar */
-  .my-element::-webkit-scrolbar {
-    display: none;
-  }
 }
-
+.repos-window::-webkit-scrollbar {
+  display: none;
+}
 
 /* Track: lays cards horizontally with gaps */
 .repos-track {
@@ -120,9 +134,9 @@ nav ul li a:hover {
   flex: 0 0 auto;
   width: min(52%, 90vw);                /* responsive max width */
   border-radius: 14px;
-  background: #d1d1d1ad;
+  background: #242424;
   padding: 10px;                          /* creates white frame around SVG */
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(94, 94, 94, 0.671);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   scroll-snap-align: start;
   text-decoration: none;
@@ -134,17 +148,16 @@ nav ul li a:hover {
 
 /* Make the SVG card fit nicely */
 .repo-card img {
+  filter: invert(1) hue-rotate(180deg) contrast(.95) saturate(1.05);
   display: block;
   width: 100%;
   height: auto;
   border-radius: 0.8%;                     /* softens the SVG corners visually */
 }
 
-
-
 /* Footer */
 .site-footer {
-  background: white;
+  background: #242424;
   padding: 5% 2% 2% 2%;
   box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
   margin-top: auto; /* Pushes footer to bottom */
@@ -171,12 +184,12 @@ nav ul li a:hover {
 
 .footer-list a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-size: 0.875rem;
 }
 
 .footer-list a:hover {
-  color: #007bff;
+  color: #f38235;
   text-decoration: underline;
 }
 
