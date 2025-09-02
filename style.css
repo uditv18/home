@@ -53,7 +53,7 @@ header.site-header {
   justify-content: center;
   align-items: center;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
 
 
   z-index: 10;
@@ -275,9 +275,9 @@ main.slides {
   overflow: hidden;
   position: relative;
 
-  background: linear-gradient(0deg, rgba(9, 22, 26, 0.02), rgba(1, 21, 23, 0.776));
+  background: linear-gradient(0deg, rgba(22, 21, 32, 0.736), rgba(3, 2, 13, 0.707));
   backdrop-filter: blur(6px);
-  box-shadow: 0 8px 30px rgba(4, 14, 23, 0.778);
+  box-shadow: 0 8px 30px rgba(3, 9, 21, 0.778);
   transition: transform var(--transition), filter var(--transition);
   padding: 3%;
   /* Use percentage for padding */

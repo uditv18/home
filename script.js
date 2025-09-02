@@ -159,16 +159,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===================== SPEED & ANIMATION SETTINGS =====================
     let speed = 4.0;
-    const acceleration = 0.03;
+    const acceleration = 0.1;
     const deceleration = 0.005; // Rate at which the speed decreases
     const finalSpeed = 0.5; // The slow, constant speed you want to maintain
 
     // Animation phases for the flash effect
     let flashTriggered = false;
     let flashStartTime = null;
-    const flashDuration = 800;
+    const flashDuration = 50;
     let transitionDuration = 1000;
-    const hyperspaceDuration = 3000;
+    const hyperspaceDuration = 1500;
 
     // Constants for the star density
     const flashStarCount = numStars * 10;
