@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <title>Udit Kumar</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
+
 <body>
+  <canvas id="spaceCanvas"></canvas>
   <header class="site-header">
     <div class="branding">
       <h1>Udit Kumar</h1>
@@ -15,43 +18,123 @@
     </div>
     <nav>
       <ul>
-        <li><a href="resume/cards/abouts/personal.html">About</a></li>
-        <li><a href="resume/academics.html">Academics</a></li>
-        <li><a href="resume/skills.html">Skills</a></li>
-        <li><a href="resume/projects.html">Projects</a></li>
-        <li><a href="resume/research.html">Research Interests</a></li>
-        <li><a href="resume/cv.pdf" download>Download CV</a></li>
+        <li><a href="#About-content">About</a></li>
+        <li><a href="#Skills-content">Skills</a></li>
+        <!--        <li><a href="#Projects-content">Projects</a></li> -->
+        <!--        <li><a href="#Interests-content">Interests</a></li> -->
+        <li><a href="resume/cards/cv/Udit.pdf" target="_blank">Resume</a></li>
       </ul>
     </nav>
   </header>
-  <div class="content-window">
-    <iframe src="resume/cv.html" class="cv-frame" width="100%" height="100%" style="border:none;"></iframe>
-  </div>
-  <div class="repos-window">
-    <div class="repos-track">
-      <a class="repo-card" href="https://github.com/uditv18/FMRI_Preprocessing" target="_blank" rel="noopener">
-        <img src="https://gh-card.dev/repos/uditv18/FMRI_Preprocessing.svg" alt="FMRI_Preprocessing repo card">
-      </a>
 
-      <!-- Duplicate/modify these for each repo you want to show -->
-      <a class="repo-card" href="https://github.com/uditv18/AnotherRepo1" target="_blank" rel="noopener">
-        <img src="https://gh-card.dev/repos/uditv18/AnotherRepo1.svg" alt="AnotherRepo1 repo card">
-      </a>
-
-      <a class="repo-card" href="https://github.com/uditv18/AnotherRepo2" target="_blank" rel="noopener">
-        <img src="https://gh-card.dev/repos/uditv18/AnotherRepo2.svg" alt="AnotherRepo2 repo card">
-      </a>
-
-      <a class="repo-card" href="https://github.com/uditv18/AnotherRepo3" target="_blank" rel="noopener">
-        <img src="https://gh-card.dev/repos/uditv18/AnotherRepo3.svg" alt="AnotherRepo3 repo card">
-      </a>
+  <div id="modal-container" class="modal-container">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div id="modal-body"></div>
     </div>
   </div>
+
+  <div id="hidden-sections" style="display: none;">
+    <section id="About-content">
+      <h2>About</h2>
+      <p style="text-indent: 2em;">
+        The Data and computation are the two sides of the a coin that represents everything that exists and as a
+        computational data scientist my goal is to create procurable and easy solutions for sustainability and
+        prosparity of all. My research on Autism spectrum disorder (ASD) will help us diagnose ASD at early age and
+        improve life of the affected individuals. I have preprocessed fMRI data provided by the <a
+          href="https://fcon_1000.projects.nitrc.org/indi/abide/abide_II.html" target="_blank">ABIDE-II</a> and analysed
+        it using network thoratics and statistics, two primary tools of data scientists, to find pattern and signatures
+        of ASD in early developmental stages. I have worked with Genomics data for genetics, and personalised medicin
+        and molecular dynamics simulations for testing behaviours of bio-molecules. Mechine learning models revail
+        patterns never seen otherwise and cloud computing, and docker/singularity containers push the fronare of science
+        forward. I am always ready with my skills and experiance to solve problems in industry and research to help
+        build a better world. Feel free to contact me for hairing, collaboration. or any inquiries.
+      </p>
+    </section>
+    <section id="Skills-content">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>Programming:</strong> Python, R, Bash, SQL, HTML, CSS, JavaScript</li>
+        <li><strong>Technical Tools:</strong> Linux, Docker, Singularity, SDKs, REST APIs, HPC Cluster Computing</li>
+        <li><strong>Neuroimaging:</strong> fMRIPrep, FreeSurfer, FSL, AFNI, ANTs, Nilearn, Brainiak, PyMVPA, MNE-Python,
+          NeuroKit2, YASA, OpenViBE</li>
+        <li><strong>Molecular Dynamics & Structural Biology:</strong> AMBER, GROMACS, AlphaFold, PyMOL, X3DNA, DSSR,
+          RNAfold, RNAstructure, 3dRNA, CONTRAfold, Pyrex</li>
+        <li><strong>Genomics & Bioinformatics:</strong> SRA Toolkit, FastQC, Trimmomatic, SAMtools, Bowtie2, STAR,
+          DANPOS2,
+          IGV</li>
+        <li><strong>Productivity & Workflow:</strong> Git & GitHub, LaTeX, Beamer, Microsoft 365, Canva, WIX</li>
+        <li><strong>Strong communication skills to effectively interact with teammates and present complex content to
+            specialised and general audiences.</li>
+      </ul>
+    </section>
+    <section id="Projects-content">
+      <h2>Projects</h2>
+      <p>This is the content for the projects section.</p>
+    </section>
+    <section id="Interests-content">
+      <h2>Interests</h2>
+      <p>This is the content for the interests section.</p>
+    </section>
+  </div>
+
+  <main>
+    <section class="slide" data-title="FMRI Preprocessing" data-sub="GitHub Repo"
+      data-link="https://github.com/uditv18/FMRI_Preprocessing">
+      <div class="content">
+        <h1>FMRI Preprocessing</h1>
+        <h2>Project on GitHub</h2>
+        <p class="muted">A brief description of your FMRI project.</p>
+        <div class="buttons">
+          <a class="btn" href="https://github.com/uditv18/FMRI_Preprocessing" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+      <div class="visual"
+        style="background-image:url('https://images.unsplash.com/photo-1549692520-acc66699042b?q=80&w=1200&auto=format&fit=crop');">
+      </div>
+    </section>
+
+    <section class="slide" data-title="Neuroscience Project" data-sub="OpenNeuro Dataset"
+      data-link="https://openneuro.org/">
+      <div class="content">
+        <h1>Neuroscience Project</h1>
+        <h2>Dataset on OpenNeuro</h2>
+        <p class="muted">A brief description of your OpenNeuro project.</p>
+        <div class="buttons">
+          <a class="btn" href="https://openneuro.org/" target="_blank">View on OpenNeuro</a>
+        </div>
+      </div>
+      <div class="visual"
+        style="background-image:url('https://images.unsplash.com/photo-1554477435-8664654b4131?q=80&w=1200&auto=format&fit=crop');">
+      </div>
+    </section>
+
+    <section class="GitRepo" id="Projects-content">
+      <div class="repos-window">
+        <div class="repos-track">
+          <a class="repo-card" href="https://github.com/uditv18/FMRI_Preprocessing" target="_blank" rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/FMRI_Preprocessing.svg" alt="FMRI_Preprocessing repo card">
+          </a>
+          <a class="repo-card" href="https://github.com/uditv18/AnotherRepo1" target="_blank" rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/AnotherRepo1.svg" alt="AnotherRepo1 repo card">
+          </a>
+          <a class="repo-card" href="https://github.com/uditv18/AnotherRepo2" target="_blank" rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/AnotherRepo2.svg" alt="AnotherRepo2 repo card">
+          </a>
+          <a class="repo-card" href="https://github.com/uditv18/AnotherRepo3" target="_blank" rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/AnotherRepo3.svg" alt="AnotherRepo3 repo card">
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer class="site-footer">
     <div class="footer-columns">
       <ul class="footer-list">
-        <li><a href="https://www.google.com/maps/place/Lucknow,+Uttar+Pradesh/" target="_blank">📍 Lucknow, Uttar Pradesh</a></li>
-        <li><a href="mailto:18.uditv.com">📧 18.uditv.com</a></li>
+        <li><a href="https://www.google.com/maps/place/Lucknow,+Uttar+Pradesh/" target="_blank">📍 Lucknow, Uttar
+            Pradesh</a></li>
+        <li><a href="mailto:18.uditv@gmail.com">📧 18.uditv.com</a></li>
         <li><a href="mailto:uditku28_sit@jnnu.ac.in">📧 uditku28_sit@jnnu.ac.in</a></li>
         <li><a href="tel:+917570816532">📞 +91 75708 16532</a></li>
       </ul>
@@ -66,5 +149,7 @@
       </ul>
     </div>
   </footer>
+  <script src="script.js" defer></script>
 </body>
+
 </html>

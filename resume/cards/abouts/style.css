@@ -1,5 +1,5 @@
 *{box-sizing: border-box}
-html,body{height:100%}
+html,body{height:100%; align-items: center; justify-content: center; display: flex;}
 body {
   margin: 0;
   font-family: Inter,system-ui,-apple-system,"Helvetica Neue",Arial;
@@ -15,17 +15,18 @@ body {
 .content-window {
   display: flex;
   justify-content: center;
-  margin: 10% 0;
+  margin: auto;
 }
+
 
 .section {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
   background: #161520;
   border-radius: 20px 0;
   padding: 8% 5%;
   width: 60%;
+  max-width: 70%;
   box-shadow: -0 11px 24px rgba(129, 129, 129, 0.836);
   font-family: Arial, sans-serif;
   gap: 20px; /* space between text and image */
@@ -89,4 +90,48 @@ body {
   .info {
     padding-right: 0;             /* reset padding */
   }
+}
+
+
+
+.quote-window {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  background: #161520;
+  justify-content: center;
+  margin: auto;
+  padding: 8% 5%;
+  width: 80%;
+  max-width: 90%;
+  box-shadow: -0 11px 24px rgba(129, 129, 129, 0.836);
+  gap: 20px;
+}
+
+blockquote {
+  font-size: 18px;
+  margin: 20px;
+  color: #ddd;
+  padding: 0;
+  border-left: 4px solid #888; /* optional vertical bar */
+  position: relative;
+  font-style: italic;
+}
+
+blockquote::before {
+  content: "“";
+  font-size: 40px;
+  position: absolute;
+  left: 10px;
+  top: 0;
+  color: #aaa;
+}
+
+blockquote::after {
+  content: "”";
+  font-size: 40px;
+  position: absolute;
+  right: 10px;
+  bottom: -10px;
+  color: #aaa;
 }

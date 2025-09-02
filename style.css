@@ -1,121 +1,397 @@
-*{box-sizing: border-box}
-html,body{height:100%}
+:root {
+  --header-h: 120px;
+  --transition: .25s ease;
+  --muted: #b8b8b8;
+}
+
+/* --- Global Styles --- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: Inter,system-ui,-apple-system,"Helvetica Neue",Arial;
-  background: linear-gradient(270deg, #424242 0%, #161520 100%);
+  font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  background-color: #161520;
+  /* Fallback color */
   overflow-x: hidden;
-  overflow-y: auto; /* Prevent body-level scrolling */
-  scrollbar-width: none; /* hides scrollbar in Firefox */
-  ::-webkit-scrollbar{
-    display: none;
-  }
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f38235 #161520;
+  transition: filter 0.3s ease-in-out;
+  /* Smooth transition for blur */
 }
 
+/* For WebKit browsers */
+body::-webkit-scrollbar {
+  width: 8px;
+}
 
-/* Header */
-header {
-  background: linear-gradient(270deg, #585858 0%, #161520 100%);
+body::-webkit-scrollbar-track {
+  background: #161520;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #f38235;
+  border-radius: 4px;
+}
+
+/* --- Header & Branding --- */
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: transparent;
   display: flex;
+  justify-content: center;
   align-items: center;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+
+
+  z-index: 10;
+  /* Z-index is lower than the modal so the modal appears on top */
+  opacity: 0;
+  /* Initially hidden */
+  pointer-events: none;
+  /* Initially non-interactive */
+  transition: height 0.8s ease-in-out, background 0.8s ease-in-out, opacity 1.5s ease-in;
+  padding: 0 5%;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+header.site-header.collapsed {
+  height: 120px;
   justify-content: space-between;
-  padding: 2.5% 2.5% 13% 2.5%;
-  position: relative;
-  z-index: 1;
-  margin: 0 0 -10% auto;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  font-family: 'Great Vibes'; /* Stylish cursive font */
-  font-weight: bold;
-  transform: skewX(-35deg);
-  color: #ffffffb4;
-  text-shadow: #555;
-  display: inline-block;
-}
-
-header h2 {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #b8b8b8;
-  font-family: Arial, Helvetica, sans-serif;
-  display: inline-block;
+  background: rgba(22, 21, 32, 0.8);
+  /* Semi-transparent background when collapsed */
+  backdrop-filter: blur(8px);
+  flex-direction: row;
 }
 
 .branding {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  transform-origin: center;
+  transition: transform 0.4s ease-in-out;
 }
 
+header.site-header.collapsed .branding {
+  align-items: flex-start;
+}
+
+header.site-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-family: 'Great Vibes', serif;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: font-size 0.4s ease-in-out;
+}
+
+header.site-header.collapsed h1 {
+  font-size: 1.5rem;
+}
+
+header.site-header h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #b8b8b8;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: font-size 0.4s ease-in-out;
+}
+
+header.site-header.collapsed h2 {
+  font-size: 0.7rem;
+}
+
+/* --- Navigation --- */
+header.site-header nav {
+  display: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+header.site-header.collapsed nav {
+  display: flex;
+  opacity: 1;
+}
 
 nav ul {
   list-style: none;
   margin: 0;
-  padding: 3%;
+  padding: 0;
   display: flex;
-  gap: 3%;
+  gap: 20px;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #161520;
-  text-shadow: #424242;
+  color: #e0e0e0;
   font-weight: 500;
   font-size: 1rem;
-  transition: color 0.1s;
+  transition: color 0.2s, text-shadow 0.2s;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 nav ul li a:hover {
-  color: #b8b8b8;
+  color: #f38235;
+  text-shadow: 0 0 5px #f38235;
 }
 
-/* Content Window */
-.content-window {
-  width: 100%;
-  height: 70vh;
-
-  background: #161520;
-  border-radius: 120px 0 0 0;
-/*  box-shadow: 4px 0 0 4px rgba(0, 0, 0, 0.2); */
-  margin: 0 0 0 1%;
-  padding: 0 0 0 0;
-  position: relative;
-  z-index: 2;
-  overflow-y: auto;
-  scrollbar-width: none; /* hides scrollbar in Firefox */
-}
-
-.content-window::-webkit-scrollbar {
+/* --- Modal & Overlay Styles --- */
+.modal-container {
   display: none;
-}
-
-/*.content-window h3 {margin-top: 0;} */
-
-.cv-frame {
-  border: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  min-height: 500px; /* fallback */
-  overflow: auto; /* extra safety */
-  scrollbar-width: none; /* hides scrollbar in Firefox */
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-.cv-frame::-webkit-scrollbar {
-  display: none;
+.modal-content {
+  background-color: rgba(2, 4, 6, 0.6);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 5, 16, 0.89);
+  width: 90%;
+  max-width: 700px;
+  position: relative;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+
+.modal-container.is-visible .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content h2 {
+  color: #ffffff;
+}
+
+.modal-content p {
+  color: #aaa;
+}
+
+.modal-content ul li {
+  color: #aaa;
+  padding: 2px;
+}
+
+.close-btn {
+  color: #aaa;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #333;
+}
+
+/* --- Blur Effect on Body --- */
+body.modal-open>*:not(#modal-container) {
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+/* --- Main Content --- */
+main {
+  padding-top: 100vh;
+  background: transparent;
+  color: white;
+  opacity: 0;
+  /* Initially hidden */
+  pointer-events: none;
+  /* Initially non-interactive */
+  transition: opacity 0.8s ease-in, padding-top 0.8s ease-in-out;
+}
+
+.content-section {
+  min-height: 100vh;
+  padding: 50px 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+}
+
+.content-section h2 {
+  font-size: 3rem;
+  color: #f38235;
+}
+
+
+/* Slides */
+main.slides {
+  margin-top: calc(var(--header-h) + 1.5%);
+  /* Use percentage for margin */
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  /* Increased gap to show background */
+  padding-bottom: 10%;
+  /* Use percentage for padding */
+}
+
+.slide {
+  width: 80%;
+  min-height: 80vh;
+  margin: 4rem auto;
+
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  /* Use percentage for the second column width */
+  gap: 3%;
+  /* Use percentage for gap */
+
+  border-radius: 16px;
+  min-height: 420px;
+  /* Keep a minimum height to prevent collapse on small screens */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+
+  background: linear-gradient(0deg, rgba(9, 22, 26, 0.02), rgba(1, 21, 23, 0.776));
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 30px rgba(4, 14, 23, 0.778);
+  transition: transform var(--transition), filter var(--transition);
+  padding: 3%;
+  /* Use percentage for padding */
+}
+
+.slide .visual {
+  height: 330px;
+  /* Keeping a fixed height for a good aspect ratio, but we can make it percentage-based if needed */
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Highlight active slide */
+.slide.is-active {
+  transform: translateY(-6px) scale(1.01);
+  filter: brightness(1.02);
+}
+
+/* Shrink non-active slides */
+.slide.card-shrink {
+  transform-origin: center left;
+  transform: scale(0.94);
+  opacity: 0.92;
+}
+
+.slide .content {
+  padding: 0.5% 1%;
+  /* Use percentage for padding */
+  max-width: 90%;
+  /* Use percentage for max-width */
+}
+
+.slide h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  /* Use clamp for fluid font sizing */
+  margin: 0 0 0.5em 0;
+  /* Use em for margin based on font size */
+  letter-spacing: 1px;
+}
+
+.slide h2 {
+  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+  /* Use clamp for fluid font sizing */
+  color: var(--muted);
+  margin: 0 0 1.5em 0;
+  /* Use em for margin */
+  font-weight: 600;
+}
+
+
+
+.buttons {
+  display: flex;
+  gap: 1%;
+  margin-top: 1.5%;
+}
+
+.btn {
+  padding: 0.8% 1.5%;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn.ghost {
+  opacity: 0.85;
+}
+
+.slide.is-active {
+  transform: translateY(-0.5%) scale(1.01);
+  filter: brightness(1.02);
+}
+
+.slide.card-shrink {
+  transform-origin: center left;
+  transform: scale(0.94);
+  opacity: 0.92;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .slide {
+    grid-template-columns: 1fr;
+    min-height: 360px;
+    padding: 2.5%;
+    /* Use percentage for padding */
+  }
+
+  .slide .visual {
+    height: 220px;
+    /* Keep a fixed height for visual consistency on mobile */
+  }
+}
+
 
 /* Repos window: horizontal scroll, scrollbar hidden */
 .repos-window {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 1.2% 1.6%;
-  scroll-snap-type: x mandatory;          /* nice snap while scrolling */
-  -ms-overflow-style: none;               /* IE/Edge: hide scrollbar */
-  scrollbar-width: none;                  /* Firefox: hide scrollbar */
+
+  margin: 3rem auto;
+  padding: 1.9% 1.6%;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  backdrop-filter: blur(6px);
 }
+
 .repos-window::-webkit-scrollbar {
   display: none;
 }
@@ -123,25 +399,28 @@ nav ul li a:hover {
 /* Track: lays cards horizontally with gaps */
 .repos-track {
   display: flex;
-  gap: 1.6%;
+  gap: 3.5%;
+  /* Increased gap to show background */
   align-items: stretch;
 }
 
 /* Card wrapper adds shadow, rounding, and hover lift */
 .repo-card {
   flex: 0 0 auto;
-  width: min(52%, 90vw);                /* responsive max width */
+  width: min(52%, 90vw);
   border-radius: 14px;
   background: #242424;
-  padding: 10px;                          /* creates white frame around SVG */
+  padding: 10px;
+  margin: auto, 7rem;
   box-shadow: 0 6px 18px rgba(94, 94, 94, 0.671);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   scroll-snap-align: start;
   text-decoration: none;
 }
+
 .repo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 1% 2% rgba(0,0,0,0.16);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 4% 8% rgba(0, 0, 0, 0.20);
 }
 
 /* Make the SVG card fit nicely */
@@ -150,18 +429,24 @@ nav ul li a:hover {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0.8%;                     /* softens the SVG corners visually */
+  border-radius: 0.8%;
 }
 
 /* Footer */
 .site-footer {
-  background: #242424;
+  background: #010c1172;
+  backdrop-filter: blur(4px);
   padding: 5% 2% 2% 2%;
-  box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
-  margin-top: auto; /* Pushes footer to bottom */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+  opacity: 0;
+  /* Initially hidden */
+  pointer-events: none;
+  /* Initially non-interactive */
+  transition: opacity 0.8s ease-in;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to the top */
+  justify-content: flex-start;
 }
 
 .footer-columns {
@@ -191,33 +476,53 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* Media Query for Mobile Devices (max-width: 768px) */
+/* --- Media Queries --- */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    padding: 5% 2% 15%;
-    margin: 0 0 -15% 0;
+  header.site-header h1 {
+    font-size: 2rem;
   }
 
-  .branding {
-    margin-bottom: 1rem;
+  header.site-header.collapsed h1 {
+    font-size: 1.2rem;
   }
 
   nav ul {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0 0 0;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   nav ul li a {
     font-size: 0.8rem;
   }
 
-  .content-window {
-    height: 30vh;
-    border-radius: 60px 0 0 0;
-    padding: 2% 2% 0;
+  .repos-window {
+    overflow-x: hidden;
+    /* no horizontal scroll */
+    overflow-y: visible;
+    /* allow vertical */
+    padding: 1rem;
+    /* space around cards */
+  }
+
+  .repos-track {
+    flex-direction: column;
+    /* stack vertically */
+    gap: 1.2rem;
+    /* spacing between cards */
+  }
+
+  .repo-card {
+    width: 100%;
+    /* full width on mobile */
+    max-width: 100%;
+  }
+
+  .repo-card img {
+    width: 100%;
+    /* responsive */
+    height: auto;
+    /* keep aspect ratio */
   }
 
   .footer-columns {
@@ -237,4 +542,34 @@ nav ul li a:hover {
   .footer-list a {
     font-size: 0.75rem;
   }
+}
+
+/* --- Content Visibility on Load --- */
+body.content-visible .site-header {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.content-active main {
+  padding-top: 120px;
+  /* Adjust padding to match collapsed header height */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.content-active .site-footer {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Canvas Background --- */
+#spaceCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* Place canvas behind all content */
+  display: block;
 }
