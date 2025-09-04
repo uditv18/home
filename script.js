@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('.site-header');
-  const modalContainer = document.getElementById('modal-container');
-  const modalBody = document.getElementById('modal-body'); // May not exist in target HTML
-  const closeBtn = document.querySelector('.close-btn'); // May not exist in target HTML
+  // A constant for the modal animation duration to ensure it's in sync with the CSS.
+  const MODAL_ANIMATION_DURATION = 300; // In milliseconds
+
+  // Initialize all interactive components
+  initHeaderAnimation();
+  initModal();
+  initSlideTracking();
+  initVFXCanvas();
 
   // --- Header Collapsing & Content Reveal Logic ---
-  if (header) {
+  function initHeaderAnimation() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
     let contentActivated = false; // Flag to lock the header state
     const scrollThreshold = 10;
 
+    /**
+     * Activates the main content area and smoothly scrolls to it.
+     */
     const activateContentAndScroll = () => {
       if (contentActivated) return;
       contentActivated = true;
@@ -58,16 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Modal Window Logic ---
-  // This logic is for a modal that may not be in the final HTML.
-  // Guarding to prevent errors if elements are not found.
-  if (modalContainer && modalBody && closeBtn) {
+  function initModal() {
+    const modalContainer = document.getElementById('modal-container');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Guard against missing elements
+    if (!modalContainer || !modalBody || !closeBtn) return;
+
     document.querySelectorAll('nav a').forEach(link => {
       // Exclude the resume link and external links from the modal logic
       if (link.getAttribute('href') !== 'resume/cards/cv/Udit.pdf' && !link.getAttribute('href').startsWith('http')) {
         link.addEventListener('click', function (event) {
           event.preventDefault();
 
-          // Get the target content ID from the link's href
           const targetId = this.getAttribute('href').substring(1);
           const targetSection = document.getElementById(targetId);
 
@@ -82,15 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Function to close the modal
+    /**
+     * Closes the modal with a fade-out animation.
+     */
     const closeModal = () => {
       modalContainer.classList.remove('is-visible');
       document.body.classList.remove('modal-open');
-      // Wait for the animation to finish before hiding the modal
+
+      // Wait for the CSS transition to finish before hiding the modal and clearing its content.
       setTimeout(() => {
         modalContainer.style.display = 'none';
         modalBody.innerHTML = '';
-      }, 400); // This should match your CSS transition time
+      }, MODAL_ANIMATION_DURATION); // This duration should match the CSS transition time.
     };
 
     // Close the modal when the 'x' button is clicked
@@ -111,44 +128,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Slide tracking on scroll
-  function updateActiveSlide() {
+  // --- Slide tracking on scroll ---
+  function initSlideTracking() {
     const slides = document.querySelectorAll('.slide');
-    const viewportCenter = window.innerHeight / 2;
+    if (slides.length === 0) return;
 
-    let closestSlide = null;
-    let minDistance = Infinity;
+    /**
+     * Finds the slide closest to the center of the viewport and marks it as active.
+     */
+    function updateActiveSlide() {
+      const viewportCenter = window.innerHeight / 2;
 
-    slides.forEach(slide => {
-      const rect = slide.getBoundingClientRect();
-      const slideCenter = rect.top + rect.height / 2;
-      const distance = Math.abs(slideCenter - viewportCenter);
+      let closestSlide = null;
+      let minDistance = Infinity;
 
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestSlide = slide;
-      }
-    });
+      slides.forEach(slide => {
+        const rect = slide.getBoundingClientRect();
+        const slideCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(slideCenter - viewportCenter);
 
-    slides.forEach(slide => {
-      if (slide === closestSlide) {
-        slide.classList.add('is-active');
-        slide.classList.remove('card-shrink');
-      } else {
-        slide.classList.remove('is-active');
-        slide.classList.add('card-shrink');
-      }
-    });
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestSlide = slide;
+        }
+      });
+
+      slides.forEach(slide => {
+        if (slide === closestSlide) {
+          slide.classList.add('is-active');
+          slide.classList.remove('card-shrink');
+        } else {
+          slide.classList.remove('is-active');
+          slide.classList.add('card-shrink');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveSlide);
+    window.addEventListener('resize', updateActiveSlide);
+    updateActiveSlide(); // Initial call to set the state on page load
   }
 
-  window.addEventListener('scroll', updateActiveSlide);
-  window.addEventListener('resize', updateActiveSlide);
-  document.addEventListener('DOMContentLoaded', updateActiveSlide);
-
-
   // --- VFX Canvas Background Logic ---
-  const canvas = document.getElementById('spaceCanvas');
-  if (canvas) {
+  function initVFXCanvas() {
+    const canvas = document.getElementById('spaceCanvas');
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
 
     let width, height;
@@ -201,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getRandomColor() {
-      const colors = ["#ffffff", "#ffd27f", "#ffae42", "#ff8c00", "#ff4500"];
+      const colors = ["#ffffff", "#ffd27f"];
       return colors[Math.floor(Math.random() * colors.length)];
     }
 

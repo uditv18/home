@@ -195,6 +195,8 @@ nav ul li a:hover {
 }
 
 .close-btn {
+  background: transparent;
+  border: none;
   color: #aaa;
   position: absolute;
   top: 15px;
@@ -202,11 +204,19 @@ nav ul li a:hover {
   font-size: 32px;
   font-weight: bold;
   cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:focus-visible {
+  outline: 2px solid var(--muted);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-  color: #333;
+  color: #f38235;
 }
 
 /* --- Blur Effect on Body --- */
@@ -244,6 +254,12 @@ main {
   color: #f38235;
 }
 
+/* Style for the 'About' paragraph from the modal */
+#About-content p {
+  text-indent: 2em;
+  text-align: justify;
+}
+
 
 /* Slides */
 main.slides {
@@ -268,10 +284,9 @@ main.slides {
   gap: 3%;
   /* Use percentage for gap */
 
-  border-radius: 16px;
   min-height: 420px;
   /* Keep a minimum height to prevent collapse on small screens */
-  border-radius: 10px;
+  border-radius: 16px;
   overflow: hidden;
   position: relative;
 
@@ -289,19 +304,6 @@ main.slides {
   border-radius: 8px;
   background-size: cover;
   background-position: center;
-}
-
-/* Highlight active slide */
-.slide.is-active {
-  transform: translateY(-6px) scale(1.01);
-  filter: brightness(1.02);
-}
-
-/* Shrink non-active slides */
-.slide.card-shrink {
-  transform-origin: center left;
-  transform: scale(0.94);
-  opacity: 0.92;
 }
 
 .slide .content {
@@ -411,7 +413,8 @@ main.slides {
   border-radius: 14px;
   background: #242424;
   padding: 10px;
-  margin: auto, 7rem;
+  margin: 0;
+  /* Let flex gap handle spacing */
   box-shadow: 0 6px 18px rgba(94, 94, 94, 0.671);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   scroll-snap-align: start;

@@ -20,8 +20,8 @@
       <ul>
         <li><a href="#About-content">About</a></li>
         <li><a href="#Skills-content">Skills</a></li>
-        <!--        <li><a href="#Projects-content">Projects</a></li> -->
-        <!--        <li><a href="#Interests-content">Interests</a></li> -->
+        <!-- <li><a href="#Projects-content">Projects</a></li> -->
+        <!-- <li><a href="#Interests-content">Interests</a></li> -->
         <li><a href="resume/cards/cv/Udit.pdf" target="_blank">Resume</a></li>
       </ul>
     </nav>
@@ -29,14 +29,14 @@
 
   <div id="modal-container" class="modal-container">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <button class="close-btn" aria-label="Close modal">&times;</button>
       <div id="modal-body"></div>
     </div>
   </div>
 
   <div id="hidden-sections" style="display: none;">
     <section id="About-content">
-      <h2>About</h2>
+      <!-- <h2>About</h2> -->
       <p style="text-indent: 2em;">
         The Data and computation are the two sides of the a coin that represents everything that exists and as a
         computational data scientist my goal is to create procurable and easy solutions for sustainability and
@@ -48,7 +48,7 @@
         and molecular dynamics simulations for testing behaviours of bio-molecules. Mechine learning models revail
         patterns never seen otherwise and cloud computing, and docker/singularity containers push the fronare of science
         forward. I am always ready with my skills and experiance to solve problems in industry and research to help
-        build a better world. Feel free to contact me for hairing, collaboration. or any inquiries.
+        build a better world. Do contact me for hairing, collaboration. or any inquiries.
       </p>
     </section>
     <section id="Skills-content">
@@ -65,7 +65,7 @@
           IGV</li>
         <li><strong>Productivity & Workflow:</strong> Git & GitHub, LaTeX, Beamer, Microsoft 365, Canva, WIX</li>
         <li><strong>Strong communication skills to effectively interact with teammates and present complex content to
-            specialised and general audiences.</li>
+            specialised and general audiences.</strong></li>
       </ul>
     </section>
     <section id="Projects-content">
@@ -78,7 +78,7 @@
     </section>
   </div>
 
-  <main>
+  <main class="site-content">
     <section class="slide" data-title="FMRI Preprocessing" data-sub="GitHub Repo"
       data-link="https://github.com/uditv18/FMRI_Preprocessing">
       <div class="content">
@@ -109,20 +109,24 @@
       </div>
     </section>
 
-    <section class="GitRepo" id="Projects-content">
+    <section class="GitRepo" id="github-projects">
       <div class="repos-window">
         <div class="repos-track">
-          <a class="repo-card" href="https://github.com/uditv18/FMRI_Preprocessing" target="_blank" rel="noopener">
-            <img src="https://gh-card.dev/repos/uditv18/FMRI_Preprocessing.svg" alt="FMRI_Preprocessing repo card">
+          <a class="repo-card" href="https://github.com/uditv18/FMRI-Preprocessing" target="_blank" rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/FMRI-Preprocessing.svg" alt="FMRI-Preprocessing repo card">
           </a>
-          <a class="repo-card" href="https://github.com/uditv18/AnotherRepo1" target="_blank" rel="noopener">
-            <img src="https://gh-card.dev/repos/uditv18/AnotherRepo1.svg" alt="AnotherRepo1 repo card">
+          <a class="repo-card" href="https://github.com/uditv18/fMRI-data-analysis.git" target="_blank" rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/fMRI-data-analysis.svg" alt="fMRI-data-analysis repo card">
           </a>
-          <a class="repo-card" href="https://github.com/uditv18/AnotherRepo2" target="_blank" rel="noopener">
-            <img src="https://gh-card.dev/repos/uditv18/AnotherRepo2.svg" alt="AnotherRepo2 repo card">
+          <a class="repo-card" href="https://github.com/uditv18/Molecular-Dynamics-Simulation" target="_blank"
+            rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/Molecular-Dynamics-Simulation.svg"
+              alt="Molecular-Dynamics-Simulation repo card">
           </a>
-          <a class="repo-card" href="https://github.com/uditv18/AnotherRepo3" target="_blank" rel="noopener">
-            <img src="https://gh-card.dev/repos/uditv18/AnotherRepo3.svg" alt="AnotherRepo3 repo card">
+          <a class="repo-card" href="https://github.com/uditv18/Mechine-learning-classification" target="_blank"
+            rel="noopener">
+            <img src="https://gh-card.dev/repos/uditv18/Mechine-learning-classification.svg"
+              alt="Mechine-learning-classification repo card">
           </a>
         </div>
       </div>
@@ -132,20 +136,29 @@
   <footer class="site-footer">
     <div class="footer-columns">
       <ul class="footer-list">
-        <li><a href="https://www.google.com/maps/place/Lucknow,+Uttar+Pradesh/" target="_blank">📍 Lucknow, Uttar
-            Pradesh</a></li>
-        <li><a href="mailto:18.uditv@gmail.com">📧 18.uditv.com</a></li>
-        <li><a href="mailto:uditku28_sit@jnnu.ac.in">📧 uditku28_sit@jnnu.ac.in</a></li>
-        <li><a href="tel:+917570816532">📞 +91 75708 16532</a></li>
+        <li><a href="https://www.google.com/maps/place/Lucknow,+Uttar+Pradesh/" target="_blank"
+            aria-label="Location: Lucknow, Uttar Pradesh"><span aria-hidden="true">📍</span> Lucknow, Uttar Pradesh</a>
+        </li>
+        <li><a href="mailto:18.uditv@gmail.com" aria-label="Email: 18.uditv@gmail.com"><span
+              aria-hidden="true">📧</span> 18.uditv@gmail.com</a></li>
+        <li><a href="mailto:uditku28_sit@jnnu.ac.in" aria-label="Email: uditku28_sit@jnnu.ac.in"><span
+              aria-hidden="true">📧</span> uditku28_sit@jnnu.ac.in</a></li>
+        <li><a href="tel:+917570816532" aria-label="Phone: +91 75708 16532"><span aria-hidden="true">📞</span> +91 75708
+            16532</a></li>
       </ul>
       <ul class="footer-list">
-        <li><a href="https://github.com/uditv18" target="_blank">🐙 GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/udit-kumar-621565289/" target="_blank">💼 LinkedIn</a></li>
-        <li><a href="https://twitter.com/udcaptures" target="_blank">🐦 Twitter</a></li>
+        <li><a href="https://github.com/uditv18" target="_blank" aria-label="GitHub"><span aria-hidden="true">🐙</span>
+            GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/udit-kumar-621565289/" target="_blank" aria-label="LinkedIn"><span
+              aria-hidden="true">💼</span> LinkedIn</a></li>
+        <li><a href="https://twitter.com/udcaptures" target="_blank" aria-label="Twitter"><span
+              aria-hidden="true">🐦</span> Twitter</a></li>
       </ul>
       <ul class="footer-list">
-        <li><a href="https://instagram.com/18.uditv" target="_blank">📸 Instagram</a></li>
-        <li><a href="https://www.threads.net/@18.uditv" target="_blank">#️⃣ Threads</a></li>
+        <li><a href="https://instagram.com/18.uditv" target="_blank" aria-label="Instagram"><span
+              aria-hidden="true">📸</span> Instagram</a></li>
+        <li><a href="https://www.threads.net/@18.uditv" target="_blank" aria-label="Threads"><span
+              aria-hidden="true">#️⃣</span> Threads</a></li>
       </ul>
     </div>
   </footer>
